@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redot Environment Architect v4.4</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Redot Enviro <span>Architect Tool</span></h1>
+            <p>Generador de Terrenos, Estructuras y Fluidos para Redot v4.4</p>
+        </header>
+
+        <main>
+            <section class="control-panel">
+                <div class="upload-zone" id="drop-zone">
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <div class="placeholder-text">
+                        <p>Arrastra tu referencia de Textura o Casa</p>
+                        <span class="subtext">Soporta PNG, JPG</span>
+                    </div>
+                    <img id="preview-ref" class="hidden" alt="Referencia">
+                </div>
+
+                <div class="options">
+                    <label>Categoría del Entorno:</label>
+                    <select id="envCategory">
+                        <option value="terrain_basic">Terreno Básico (Césped, Tierra, Piedra)</option>
+                        <option value="structure">Estructura (Casa, Edificio, Ruinas)</option>
+                        <option value="liquid">Fluidos (Mar, Olas, Lava)</option>
+                        <option value="nature_prop">Naturaleza Detallada (Rocas con Musgo, Frutas)</option>
+                    </select>
+
+                    <label>Configuración de Salida:</label>
+                    <select id="outputFormat">
+                        <option value="atlas">Atlas 3x3 (Para AutoTile)</option>
+                        <option value="single">Sprite Único (Props grandes)</option>
+                        <option value="sheet">Sprite Sheet (Animación agua)</option>
+                    </select>
+
+                    <div class="info-box" id="info-box">
+                        <small>💡 Para Terrenos: Se generará un patrón repetible.</small>
+                    </div>
+
+                    <button id="btn-generate" disabled>Construir Assets</button>
+                </div>
+            </section>
+
+            <section class="results-area hidden" id="results-area">
+                <div class="results-header">
+                    <h2>Assets Generados</h2>
+                    <span class="badge">Listo para Redot</span>
+                </div>
+                
+                <div class="preview-canvas-container">
+                    <canvas id="resultCanvas"></canvas>
+                </div>
+                
+                <p id="status-text">Vista previa del Tileset/Sprite</p>
+                <button id="btn-download" class="primary-btn">Descargar Pack .ZIP (Tileset + Import)</button>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
